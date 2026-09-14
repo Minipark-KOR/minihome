@@ -49,8 +49,7 @@ out/
 *.tsbuildinfo
 
 # Vercel local dev
-.vercel/*.env*
-.vercel/.env*
+.vercel/
 
 # Testing
 .pytest_cache/
