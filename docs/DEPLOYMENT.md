@@ -7,6 +7,7 @@ Vercel 표준 모노레포 구성: Git repo가 루트, 각 앱이 하위 디렉�
 ```
 minihome/                         ← Git Repo Root (Minipark-KOR/minihome)
 ├── apps/
+│   ├── minihome/frontend/        ← Vercel Project: minihome (prj_scmMBu4sSrO1DesyKLO38es39sob)
 │   ├── ebook/frontend/           ← Vercel Project: miniebook (prj_AgCf0ZgzOUJ72pn0g9sJvq3lCm9v)
 │   ├── news/web/                 ← Vercel Project: news (prj_jDsE3OdG5ajEUTmgGMNKR5bW20yV)
 │   ├── cashbook/frontend/        ← Vercel Project: mini-cashbook (prj_QBezAF62BvVw4YA70I3mVIL6zEZw)
@@ -16,15 +17,15 @@ minihome/                         ← Git Repo Root (Minipark-KOR/minihome)
 └── README.md
 ```
 
-> minihome = 모노레포 ROOT/umbrella (ebook과 별개)
+> minihome = 모노레포 Root/Vercel 프로젝트 (ebook과 완전히 별개)
 > minihome4u = Vercel 팀/org 이름
-> apps/ 안에 앱들이 직접 배치됨 (하위 폴더 없음)
+> apps/ 안에 앱들이 직접 배치됨
 
 ## 프로젝트 매핑 (Vercel Root Directory)
 
 | Vercel 프로젝트 | Project ID | Root Directory | Framework | 빌드 설정 |
 |----------------|-----------|---------------|-----------|-----------|
-| **minihome** | `prj_scmMBu4sSrO1DesyKLO38es39sob` | **umbrella** | — | — |
+| **minihome** | `prj_scmMBu4sSrO1DesyKLO38es39sob` | `apps/minihome/frontend` | Next.js | `npm run build` → `.next` |
 | **miniebook** | `prj_AgCf0ZgzOUJ72pn0g9sJvq3lCm9v` | `apps/ebook/frontend` | Next.js | `npm run build` → `.next` |
 | news | `prj_jDsE3OdG5ajEUTmgGMNKR5bW20yV` | `apps/news/web` | Next.js | `npm run build` → `.next` (region: hnd1) |
 | mini-cashbook | `prj_QBezAF62BvVw4YA70I3mVIL6zEZw` | `apps/cashbook/frontend` | Static SPA | rewrites → index.html |
@@ -44,6 +45,6 @@ minihome/                         ← Git Repo Root (Minipark-KOR/minihome)
 
 ## 주의사항
 
-- **`apps/minihome/` 같은 하위 폴더 없음** — minihome이 모노레포 ROOT
+- **minihome** 과 **miniebook** 은 완전히 별개 프로젝트 (별도 Root Directory)
 - 환경변수 (NEXT_PUBLIC_API_URL, NEIS_API_KEY 등)는 Vercel 대시보드에서 별도 설정
 - `.env` 파일은 git에 포함되지 않음
