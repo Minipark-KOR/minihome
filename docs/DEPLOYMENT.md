@@ -8,11 +8,11 @@ Vercel 대시보드에서 각 프로젝트의 **Root Directory**를 아래와 �
 | Vercel 프로젝트 | Project ID | Root Directory | Framework | 빌드 설정 |
 |----------------|-----------|---------------|-----------|-----------|
 | **minihome** | `prj_scmMBu4sSrO1DesyKLO38es39sob` | `apps/ebook/frontend` | Next.js | `npm run build` → `.next` |
-| miniebook | — | `apps/ebook/frontend` | Next.js | `npm run build` → `.next` |
-| news | — | `apps/news/web` | Next.js | `npm run build` → `.next` (region: hnd1) |
-| mini-cashbook | — | `apps/cashbook/frontend` | Static SPA | rewrites → index.html |
-| mini-timetable | — | `apps/timetable` | Python | `@vercel/python` (main.py) |
-| kuhwa | — | `apps/kuhwa` | Next.js Static | rewrites for API |
+| miniebook | `prj_AgCf0ZgzOUJ72pn0g9sJvq3lCm9v` | `apps/ebook/frontend` | Next.js | `npm run build` → `.next` |
+| news | `prj_jDsE3OdG5ajEUTmgGMNKR5bW20yV` | `apps/news/web` | Next.js | `npm run build` → `.next` (region: hnd1) |
+| mini-cashbook | `prj_QBezAF62BvVw4YA70I3mVIL6zEZw` | `apps/cashbook/frontend` | Static SPA | rewrites → index.html |
+| mini-timetable | `prj_rvPCSamTzjTeOL1iaP2KW3KYN7cH` | `apps/timetable` | Python | `@vercel/python` (main.py) |
+| kuhwa | `prj_TBAJ1w7MsHhxBm51rwbNBYopv1ex` | `apps/kuhwa` | Next.js Static | rewrites for API |
 
 > **minihome4u** = Vercel 팀/org 이름
 > **minihome** = 모노레포 저장소 이름 + 별도 Vercel 프로젝트 (umbrella/최상위)
