@@ -1,11 +1,11 @@
-# mini home — 문서
+# ebook — 문서
 
 웹소설 리더 전용 서비스 문서
 
 ## 빠른 참조
 
 ```
-minihome = Next.js (Vercel CDN) → /api/* catch-all → devforge FastAPI → JSON 파일 DB
+miniebook = Next.js (Vercel CDN) → /api/* catch-all → devforge FastAPI → JSON 파일 DB
 ```
 
 ### 핵심 파일
