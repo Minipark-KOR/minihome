@@ -1,9 +1,26 @@
 # Vercel 배포 설정
 
-각 앱은 독립적인 Vercel 프로젝트로 배포됩니다.
-Vercel 대시보드에서 각 프로젝트의 **Root Directory**를 아래와 같이 설정하세요.
+## Monorepo 구조 (업계 표준)
 
-## 프로젝트 매핑
+Vercel 표준 모노레포 구성: Git repo가 루트, 각 앱이 하위 디렉토리로 배포됨.
+
+```
+minihome/                         ← Git Repo Root (Minipark-KOR/minihome)
+├── apps/
+│   ├── ebook/frontend/           ← Vercel Project: minihome (prj_scmMBu4sSrO1DesyKLO38es39sob)
+│   ├── news/web/                 ← Vercel Project: news (prj_jDsE3OdG5ajEUTmgGMNKR5bW20yV)
+│   ├── cashbook/frontend/        ← Vercel Project: mini-cashbook (prj_QBezAF62BvVw4YA70I3mVIL6zEZw)
+│   ├── timetable/                ← Vercel Project: mini-timetable (prj_rvPCSamTzjTeOL1iaP2KW3KYN7cH)
+│   └── kuhwa/                    ← Vercel Project: kuhwa (prj_TBAJ1w7MsHhxBm51rwbNBYopv1ex)
+├── .gitignore
+└── README.md
+```
+
+> minihome = 모노레포 ROOT (저장소 이름이자 메인 Vercel 프로젝트)
+> minihome4u = Vercel 팀/org 이름
+> apps/ 안에 앱들이 직접 배치됨 (하위 폴더 없음)
+
+## 프로젝트 매핑 (Vercel Root Directory)
 
 | Vercel 프로젝트 | Project ID | Root Directory | Framework | 빌드 설정 |
 |----------------|-----------|---------------|-----------|-----------|
@@ -14,18 +31,18 @@ Vercel 대시보드에서 각 프로젝트의 **Root Directory**를 아래와 �
 | mini-timetable | `prj_rvPCSamTzjTeOL1iaP2KW3KYN7cH` | `apps/timetable` | Python | `@vercel/python` (main.py) |
 | kuhwa | `prj_TBAJ1w7MsHhxBm51rwbNBYopv1ex` | `apps/kuhwa` | Next.js Static | rewrites for API |
 
-> **minihome4u** = Vercel 팀/org 이름
-> **minihome** = 모노레포 저장소 이름 + 별도 Vercel 프로젝트 (umbrella/최상위)
-> **minihome** 과 **miniebook** 은 별개 프로젝트
+> **minihome** 과 **miniebook** 은 별개 Vercel 프로젝트 (같은 Root Directory, 다른 Project ID)
+> minihome4u.vercel.app = minihome 프로젝트 URL
 
-## 루트 디렉토리 설정 방법
+## Root Directory 설정 방법 (Vercel 대시보드)
 
-1. Vercel 대시보드 → 각 프로젝트 선택
-2. Settings → Git → Root Directory 변경
-3. Push하면 자동 배포
+1. Vercel 대시보드 → New Project → Import Git Repository
+2. `Minipark-KOR/minihome` 선택
+3. **Root Directory** 설정: 각 프로젝트별 디렉토리 지정
+4. Deploy
 
 ## 주의사항
 
-- Vercel 프로젝트 `minihome` (`prj_scmMBu4sSrO1DesyKLO38es39sob`) 은 **miniebook과 별개**로 유지
-- 환경변수 (NEXT_PUBLIC_API_URL, NEIS_API_KEY 등)는 Vercel 대시보드에서 별도 설정 필요
-- `.env` 파일은 git에 포함되지 않음 — Vercel 대시보드의 Environment Variables에서 설정
+- **`apps/minihome/` 같은 하위 폴더 없음** — minihome이 모노레포 ROOT
+- 환경변수 (NEXT_PUBLIC_API_URL, NEIS_API_KEY 등)는 Vercel 대시보드에서 별도 설정
+- `.env` 파일은 git에 포함되지 않음
