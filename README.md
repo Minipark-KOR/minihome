@@ -1,4 +1,4 @@
-# mini home — Monorepo
+# mini home — Umbrella Repo
 
 독립적인 웹 프로젝트들을 하나의 저장소(umbrella repo)로 관리합니다.
 각 프로젝트는 `apps/` 하위에 위치하며, 독립적으로 배포 및 운영됩니다.

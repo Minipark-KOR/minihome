@@ -7,11 +7,13 @@ Vercel 대시보드에서 각 프로젝트의 **Root Directory**를 아래와 �
 
 | Vercel 프로젝트 | Root Directory | Framework | 빌드 설정 |
 |----------------|---------------|-----------|-----------|
-| minihome | **분리 필요** — minihome은 ebook과 별개 프로젝트 | — | — |
+| miniebook | `apps/ebook/frontend` | Next.js | `npm run build` → `.next` |
 | news | `apps/news/web` | Next.js | `npm run build` → `.next` (region: hnd1) |
 | mini-cashbook | `apps/cashbook/frontend` | Static SPA | rewrites → index.html |
 | mini-timetable | `apps/timetable` | Python | `@vercel/python` (main.py) |
 | kuhwa | `apps/kuhwa` | Next.js Static | rewrites for API |
+
+> **minihome** 은 모노레포 저장소 이름(Umbrella Repo)입니다. 별도 Vercel 프로젝트가 아닙니다.
 
 ## 루트 디렉토리 설정 방법
 
@@ -21,6 +23,6 @@ Vercel 대시보드에서 각 프로젝트의 **Root Directory**를 아래와 �
 
 ## 주의사항
 
-- minihome 프로젝트는 **separate project**로 분리 필요 (현재 ebook 프론트엔드와 혼합됨)
+- Vercel 프로젝트 `minihome` (현재 Error 상태)은 삭제하거나 `miniebook`으로 통합
 - 환경변수 (NEXT_PUBLIC_API_URL, NEIS_API_KEY 등)는 Vercel 대시보드에서 별도 설정 필요
 - `.env` 파일은 git에 포함되지 않음 — Vercel 대시보드의 Environment Variables에서 설정
