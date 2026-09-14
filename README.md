@@ -8,7 +8,7 @@
 minihome/                         ← Git Repo Root
 ├── apps/                         ← 모든 프로젝트 (업계 표준)
 │   ├── minihome/                 ← Vercel: minihome (prj_scmMBu4sSrO1DesyKLO38es39sob)
-│   │   └── app/                  ← �딩 페이지 (5개 프로젝트 링크)
+│   │   └── app/                  ← 랜딩 페이지 (5개 프로젝트 링크)
 │   ├── ebook/frontend/         ← Vercel: miniebook (prj_AgCf0ZgzOUJ72pn0g9sJvq3lCm9v)
 │   ├── news/web/               ← Vercel: news (prj_jDsE3OdG5ajEUTmgGMNKR5bW20yV)
 │   ├── cashbook/frontend/      ← Vercel: mini-cashbook (prj_QBezAF62BvVw4YA70I3mVIL6zEZw)
