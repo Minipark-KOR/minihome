@@ -13,6 +13,7 @@ minihome/                    ← Monorepo root (umbrella)
 │   ├── cashbook/           ← 가계부 (FastAPI + HTMX/SPA)
 │   ├── timetable/          ← 시간표 구독 (FastAPI + Google Calendar Sync)
 │   └── kuhwa/              ← 한국구화학교 학사일정 (Next.js 정적 사이트)
+├── docs/
 ├── .gitignore
 └── README.md
 ```
