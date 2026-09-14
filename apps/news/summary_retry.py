@@ -15,7 +15,7 @@ if _SCRIPTS not in sys.path:
 from lib.db import psql, psql_json
 
 # Add news scripts to path
-_NEWS = "/opt/workspace/news"
+_NEWS = "/opt/workspace/minihome/apps/news"
 if _NEWS not in sys.path:
     sys.path.insert(0, _NEWS)
 

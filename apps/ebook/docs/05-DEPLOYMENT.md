@@ -5,7 +5,7 @@
 ## 환경 구성
 
 ### 호스팅
-- **프론트엔드**: Vercel (Next.js, Root Directory = `apps/frontend`)
+- **프론트엔드**: Vercel (Next.js, Root Directory = `apps/ebook/frontend`)
 - **백엔드 API**: devforge (Oracle Cloud) — FastAPI @ `127.0.0.1:8089`, Caddy(nip.io)로 공개
 - **FlareSolverr**: devforge 로컬 서버 (Podman Quadlet)
 - **데이터 스토리지**: devforge 로컬 파일시스템 (`/opt/ai_data/`)
@@ -26,11 +26,11 @@
 
 ### 1. 프로젝트 설정
 
-**중요**: Vercel 프로젝트 생성 시 **Root Directory = `apps/frontend`**.
+**중요**: Vercel 프로젝트 생성 시 **Root Directory = `apps/ebook/frontend`**.
 
 ```
 Project Settings:
-  - Root Directory: apps/frontend
+  - Root Directory: apps/ebook/frontend
   - Framework Preset: Next.js
   - Build Command: npm run build
   - Output Directory: .next
@@ -62,7 +62,7 @@ VERCEL_REVALIDATE_TOKEN = <revalidate 인증 토큰>
 # Vercel CLI 설치
 npm install -g vercel
 
-# 최초 배포 (프로젝트 연결, Root Directory=apps/frontend 설정)
+# 최초 배포 (프로젝트 연결, Root Directory=apps/ebook/frontend 설정)
 cd /opt/workspace/minihome/apps/ebook/
 vercel --prod --project miniebook
 

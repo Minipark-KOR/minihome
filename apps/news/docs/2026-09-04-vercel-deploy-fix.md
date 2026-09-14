@@ -44,7 +44,7 @@ Route (app)
 
 ### 2. `collector.py` 코드 중복
 
-`/opt/workspace/news/collector.py` 파일에 다음과 같은 함수들이 중복 정의되어 있었음:
+`/opt/workspace/minihome/apps/news/collector.py` 파일에 다음과 같은 함수들이 중복 정의되어 있었음:
 
 | 함수 | 1번째 정의 (라인) | 2번째 정의 (라인) | 문제 |
 |------|-------------------|-------------------|------|

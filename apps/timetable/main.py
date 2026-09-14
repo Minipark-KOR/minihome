@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: experimental
-# Path: standalone — /opt/workspace/timetable/main.py
+# Path: monorepo — /opt/workspace/minihome/apps/timetable/main.py
 """Timetable — Google Calendar Sync from Excel/Sheets.
 
 Standalone FastAPI app for calendar sync feature.

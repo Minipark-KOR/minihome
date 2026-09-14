@@ -139,7 +139,7 @@ NEXT_PUBLIC_API_URL=http://127.0.0.1:8089
 
 ### 프로덕션 (Vercel + devforge)
 ```bash
-# 프론트엔드 배포 (Vercel, Root Directory=frontend)
+# 프론트엔드 배포 (Vercel, Root Directory=apps/ebook/frontend)
 cd /opt/workspace/minihome/apps/ebook
 vercel deploy --prod --project miniebook
 
@@ -188,7 +188,7 @@ CORS_ORIGINS=["https://miniebook.vercel.app"]  # Vercel에서 자동 처리됨
 
 ## 배포 체크리스트
 
-- [ ] Vercel 프로젝트 생성 시 **Root Directory: `frontend`**
+- [ ] Vercel 프로젝트 생성 시 **Root Directory: `apps/ebook/frontend`**
 - [ ] Framework: `Next.js` (자동 감지)
 - [ ] Build Command: `npm run build`
 - [ ] Output Directory: `.next`
