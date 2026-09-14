@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: new
-# Path: ebooklib/apps/backend/lib/domain_router.py
+# Path: ebook/backend/lib/domain_router.py
 """도메인 라우팅 / 자동 전환 유틸리티.
 
 북토끼(bookto31)/뉴토끼(toki31) 등 사이트가 도메인을 자주 바꾸는 환경 대응:

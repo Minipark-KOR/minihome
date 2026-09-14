@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: new
-# Path: ebooklib/apps/backend/lib/storage.py
+# Path: ebook/backend/lib/storage.py
 """챕터 저장/메타데이터 관리 — 모든 수집기 공용.
 
 ebook_worker.py의 save_chapter()와 enrich_metadata_from_namu()를 분리.

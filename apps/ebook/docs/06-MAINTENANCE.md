@@ -11,14 +11,14 @@
 **자동 워크플로우**:
 ```bash
 # 1. 작품 메인 wr_id로 discover → 큐 등록 (신규/누락 회차 발견)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py discover <main_wr_id> "소설 제목"
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py discover <main_wr_id> "소설 제목"
 
 # 예: 하남자의 탑 공략법 (main_wr_id=21430)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py discover 21430 "하남자의 탑 공략법"
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py discover 21430 "하남자의 탑 공략법"
 
 # 또는 Admin 페이지 (https://miniebook.vercel.app/admin)에서 URL 입력
 # 또는 전체 체인 실행:
-# python3 /opt/workspace/ebooklib/scripts/pipeline.py all <main_wr_id> "소설 제목"
+# python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py all <main_wr_id> "소설 제목"
 
 # 자동 처리:
 # - ebook-watcher.service (systemd)가 pipeline.py loop 상시 실행
@@ -56,7 +56,7 @@ curl -o updated.epub "https://miniebook.vercel.app/api/novels/.../epub"
 
 **북토끼에서 직접 수집** (FlareSolverr 우회 필요):
 ```bash
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 source venv/bin/activate
 
 python3 << 'PYEOF'
@@ -74,7 +74,7 @@ PYEOF
 ### 2. EPUB 재생성 (로컬)
 
 ```bash
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 source venv/bin/activate
 python3 << 'PYEOF'
 import sys; sys.path.insert(0, '.')
@@ -107,7 +107,7 @@ for wr_id, title in empty:
 
 # 북토끼에서 재수집
 import sys
-sys.path.insert(0, '/opt/workspace/ebooklib/apps/backend')
+sys.path.insert(0, '/opt/workspace/minihome/apps/ebook/backend')
 from services.bookto31 import fetch_chapter, parse_chapter_body
 import json as _json
 
@@ -129,13 +129,13 @@ for wr_id, _ in empty:
 
 ```bash
 # 전체 소설 감지 (보고만)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py check-dupes
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py check-dupes
 
 # 특정 소설 감지
-python3 /opt/workspace/ebooklib/scripts/pipeline.py check-dupes 화산귀환
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py check-dupes 화산귀환
 
 # 감지 + 자동 수리 (재정렬/중복 제거, 변경분 _dupe_backup_* 백업, 인덱스 재구축)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py check-dupes 화산귀환 --fix
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py check-dupes 화산귀환 --fix
 ```
 
 - 감지 대상:
@@ -148,10 +148,10 @@ python3 /opt/workspace/ebooklib/scripts/pipeline.py check-dupes 화산귀환 --f
 
 ```bash
 # 빠진 화수 감지 → missing.json 기록
-python3 /opt/workspace/ebooklib/scripts/pipeline.py check-gaps [소설명]
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py check-gaps [소설명]
 
 # 누락/빈 챕터를 소스에서 재발견 → 큐 재등록 (정확한 wr_id)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py retry-missing [소설명] [--dry-run]
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py retry-missing [소설명] [--dry-run]
 ```
 
 - `missing.json`에 `gap`(누락)/`empty_source`(사이트에 본문 없음) 유형으로 추적
@@ -239,7 +239,7 @@ curl http://127.0.0.1:8191/health
 
 ```bash
 # 30일 이전 로그 삭제
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 source venv/bin/activate
 python3 -c "
 from lib.rate_limiter import cleanup_old, stats
@@ -255,7 +255,7 @@ print(f'After: {stats()}')
 ### 9. 변경사항 커밋
 
 ```bash
-cd /opt/workspace/ebooklib
+cd /opt/workspace/minihome/apps/ebook/
 git status
 git diff
 
@@ -358,7 +358,7 @@ tar -xzf ebooklib-backup-YYYYMMDD.tar.gz -C /
 ebooklib repo는 자동으로 GitHub에 백업됨 (`Minipark-KOR/ebook`).
 
 ```bash
-cd /opt/workspace/ebooklib
+cd /opt/workspace/minihome/apps/ebook/
 git log --oneline -10
 git remote -v
 ```
@@ -369,13 +369,13 @@ git remote -v
 
 ```bash
 # 신규/누락 회차 discover (큐에 등록)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py discover <main_wr_id> "소설 제목"
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py discover <main_wr_id> "소설 제목"
 
 # 전체 체인 (discover → collect → enrich → index → revalidate)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py all <main_wr_id> "소설 제목"
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py all <main_wr_id> "소설 제목"
 
 # collect 단계만 (큐 처리)
-python3 /opt/workspace/ebooklib/scripts/pipeline.py collect --limit 5 --source bookto31
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py collect --limit 5 --source bookto31
 
 # 큐 상태
 cat /opt/ai_data/flaresolverr/ebook_watcher/queue.json | python3 -m json.tool
@@ -404,9 +404,9 @@ cat /opt/ai_data/flaresolverr/ebook_watcher/failed.json | python3 -m json.tool
 
 ```bash
 # 큐의 일부를 즉시 처리 (안전 지연 무시)
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 source venv/bin/activate
-python3 /opt/workspace/ebooklib/scripts/pipeline.py collect --limit 1 --source bookto31
+python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py collect --limit 1 --source bookto31
 ```
 
 ### 21. devforge-watchdog 통합 확인

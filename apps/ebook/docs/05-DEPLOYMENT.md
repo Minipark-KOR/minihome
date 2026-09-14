@@ -36,7 +36,7 @@ Project Settings:
   - Output Directory: .next
 ```
 
-`apps/frontend/vercel.json`:
+`frontend/vercel.json`:
 ```json
 {
   "framework": "nextjs",
@@ -63,7 +63,7 @@ VERCEL_REVALIDATE_TOKEN = <revalidate 인증 토큰>
 npm install -g vercel
 
 # 최초 배포 (프로젝트 연결, Root Directory=apps/frontend 설정)
-cd /opt/workspace/ebooklib
+cd /opt/workspace/minihome/apps/ebook/
 vercel --prod --project miniebook
 
 # 이후 배포
@@ -77,7 +77,7 @@ FastAPI 백엔드는 Vercel이 아니라 **devforge (Oracle Cloud)**에서 실�
 ### 1. 서비스 실행
 
 ```bash
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 setsid nohup venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port 8089 \
   >> /var/tmp/ebook_backend.log 2>&1 < /dev/null &
 ```
@@ -85,7 +85,7 @@ setsid nohup venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port 8089 \
 ### venv 필수 의존성 (toki31 수집용)
 
 ```bash
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 venv/bin/pip install playwright cryptography
 ```
 
@@ -105,7 +105,7 @@ ps aux | grep "port 8089"
 
 # 재시작
 kill <PID>
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 setsid nohup venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port 8089 \
   >> /var/tmp/ebook_backend.log 2>&1 < /dev/null &
 
@@ -282,9 +282,9 @@ Wants=network-online.target
 [Service]
 Type=notify                                                        # sd_notify (READY=1 + WATCHDOG=1)
 EnvironmentFile=/home/opc/.config/devforge/secrets.env
-WorkingDirectory=/opt/workspace/ebooklib
+WorkingDirectory=/opt/workspace/minihome/apps/ebook/
 # 다중 소스: source 필터 없이 모든 소스 수집
-ExecStart=/opt/workspace/ebooklib/apps/backend/venv/bin/python3 /opt/workspace/ebooklib/scripts/pipeline.py loop  # 다중 소스 (source 무관)
+ExecStart=/opt/workspace/minihome/apps/ebook/backend/venv/bin/python3 /opt/workspace/minihome/apps/ebook/scripts/pipeline.py loop  # 다중 소스 (source 무관)
 WatchdogSec=1800                                                   # 30분 내 신호 없으면 hang
 Restart=on-watchdog                                                # hang/실패 시 재시작
 RestartSec=30
@@ -292,7 +292,7 @@ StandardOutput=journal
 StandardError=journal
 ```
 
-> **소스 설정**: `apps/backend/sources.json`에서 수집 소스를 관리 (도메인/base_url/collector/discover/speed).
+> **소스 설정**: `backend/sources.json`에서 수집 소스를 관리 (도메인/base_url/collector/discover/speed).
 > 새 소스 추가 또는 도메인 변경은 이 파일만 수정하면 되고, 재시작이면 반영된다.
 
 ### 등록 명령

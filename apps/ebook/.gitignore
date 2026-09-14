@@ -58,16 +58,16 @@ htmlcov/
 # Vercel — project.json은 Git에 포함 (배포 링크 유지), env만 제외
 .vercel/*.env*
 .vercel/.env*
-apps/frontend/.vercel/*.env*
-apps/frontend/.vercel/.env*
+frontend/.vercel/*.env*
+frontend/.vercel/.env*
 
 # Node
 node_modules/
-apps/frontend/node_modules/
+frontend/node_modules/
 
 # Next.js
-apps/frontend/.next/
-apps/frontend/out/
+frontend/.next/
+frontend/out/
 
 # TypeScript
 *.tsbuildinfo

@@ -25,7 +25,7 @@
 > ⚠️ 아래는 변경 전 구조입니다. 현재는 섹션 3의 아키텍처를 사용합니다.
 
 ```
-apps/backend/
+backend/
 ├── lib/
 │   └── rate_limiter.py          # SQLite 기반 rate limiter (8분 + jitter)
 │
@@ -135,7 +135,7 @@ lib/storage.py ─────────────────────�
 > ✅ 모든 Phase 완료 (Phase 1~5 + 잔여 caller 이관). 아래가 현재 코드 상태.
 
 ```
-apps/backend/
+backend/
 ├── lib/
 │   ├── __init__.py
 │   ├── rate_limiter.py          # ✅ 기존 유지 (변경 없음)
@@ -540,7 +540,7 @@ python3 -c "from services.bookto31 import fetch_home; print('OK:', fetch_home()[
 ### 전체 검증 스크립트
 
 ```bash
-cd /opt/workspace/ebooklib/apps/backend && python3 -c "
+cd /opt/workspace/minihome/apps/ebook/backend && python3 -c "
 print('=== 양방향 검증 ===')
 
 # 1. lib 모듈 독립 import
@@ -553,7 +553,7 @@ print('[OK] services → lib 의존성')
 
 # 3. 잔여 caller 이관 확인
 import sys
-sys.path.insert(0, '/opt/workspace/ebooklib')
+sys.path.insert(0, '/opt/workspace/minihome/apps/ebook/')
 import scripts.discover_chapters as dc
 import scripts.dual_metadata_ssot as dmss
 assert dc._fs._rate_limit == False
@@ -627,7 +627,7 @@ print('OK: namu.wiki FlareSolverrSession(rate_limit=False)')
 ### 이전 아키텍처
 
 ```
-apps/backend/
+backend/
 ├── lib/
 │   └── rate_limiter.py          # SQLite 기반 rate limiter (8분 + jitter)
 │

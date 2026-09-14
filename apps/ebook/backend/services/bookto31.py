@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: refactored (Phase 2)
-# Path: ebooklib/apps/backend/services/bookto31.py
+# Path: ebook/backend/services/bookto31.py
 """23.ondobook.net (북토끼) 크롤러 - FlareSolverr Cloudflare 우회 + GNUBOARD5 파싱
 
 배경:

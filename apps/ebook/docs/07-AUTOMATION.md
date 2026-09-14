@@ -114,7 +114,7 @@ Wants=network-online.target
 [Service]
 Type=notify                                                        # sd_notify (READY=1 + WATCHDOG=1)
 EnvironmentFile=/home/opc/.config/devforge/secrets.env
-WorkingDirectory=/opt/workspace/ebooklib
+WorkingDirectory=/opt/workspace/minihome/apps/ebook/
 ExecStart=.../venv/bin/python3 .../scripts/pipeline.py loop  # 다중 소스 (source 무관)
 WatchdogSec=1800                                                    # 30분 내 신호 없으면 hang
 Restart=on-watchdog                                                # hang/실패 시 재시작

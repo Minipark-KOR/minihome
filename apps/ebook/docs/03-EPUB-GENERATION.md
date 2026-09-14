@@ -66,7 +66,7 @@ async def download_epub(novel_id: str):
 ```python
 from ebooklib.epub import EpubBook, EpubHtml, EpubNcx, EpubNav, EpubItem, write_epub
 
-FONTS_DIR = Path("/opt/workspace/ebooklib/scripts/fonts")
+FONTS_DIR = Path("/opt/workspace/minihome/apps/ebook/scripts/fonts")
 DATA_DIR = Path("/opt/ai_data/flaresolverr/novels")
 
 # 4개 폰트 정의
@@ -176,7 +176,7 @@ def _build_chapter_html(title: str, content: str) -> bytes:
   - RIDIBatang (세리프, 본문용)
   - MaruBuri (둥근고딕, 인용용)
   - Literata (영문 세리프, fallback)
-- 폰트 위치: `/opt/workspace/ebooklib/scripts/fonts/`
+- 폰트 위치: `/opt/workspace/minihome/apps/ebook/scripts/fonts/`
 
 ### CSS @font-face
 ```css
@@ -280,7 +280,7 @@ if not ch_content or len(ch_content) < 100:
 ### 수동 테스트
 ```bash
 # CLI에서 EPUB 생성
-cd /opt/workspace/ebooklib/apps/backend
+cd /opt/workspace/minihome/apps/ebook/backend
 source venv/bin/activate
 python -c "
 import sys; sys.path.insert(0, '.')

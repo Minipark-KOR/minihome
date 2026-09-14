@@ -486,7 +486,7 @@ def test_toki31_chapter_with_proxy():
 
 ### 6.1 프록시 운영
 - **DataImpulse 주력** (`__cr.kr` 한국 IP 회전), **MaskProxy 폴백** (`_PROXY_PRIORITY`)
-- 자격증명: `apps/backend/.env.local` (시크릿, gitignore)
+- 자격증명: `backend/.env.local` (시크릿, gitignore)
   - `DATAIMPULSE_USER/PASS/HOST/PORT`, `MASKPROXY_USER/PASS/HOST/PORT`
   - DataImpulse user에 `__cr.kr` 접미어 자동 부여 (`_resolve_proxy`)
 - **toki31 접근**: DataImpulse로만 성공. MaskProxy는 Page.goto 타임아웃(불안정)

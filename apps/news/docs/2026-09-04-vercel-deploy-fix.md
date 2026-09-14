@@ -29,7 +29,7 @@ Route (app)
 ├ ƒ /novel/[id]/chapter/[wr_id]
 ```
 
-- `package name: frontend` → `ebooklib/apps/frontend`의 package.json
+- `package name: frontend` → `apps/ebook/frontend`의 package.json
 - `novel/[id]` 라우트 → ebooklib(전자책 라이브러리) 앱
 - `workspace sync` 과정에서 ebooklib 파일이 리포지토리에 포함되어 엉뚱한 코드가 배포됨
 

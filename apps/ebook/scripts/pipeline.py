@@ -25,7 +25,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional, Callable
 
-sys.path.insert(0, '/opt/workspace/ebooklib/apps/backend')
+sys.path.insert(0, str(Path(__file__).parent.parent / 'backend'))
 
 logging.basicConfig(
     level=logging.INFO,

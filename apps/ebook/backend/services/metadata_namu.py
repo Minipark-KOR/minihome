@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: experimental
-# Path: ebooklib/apps/backend/services/metadata_namu.py
+# Path: ebook/backend/services/metadata_namu.py
 """namu.wiki 메타데이터 검색.
 
 namu.wiki는 한국어 웹소설/웹툰의 메타데이터를 잘 정리해둔 한국 최대 위키.

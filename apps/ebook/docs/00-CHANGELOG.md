@@ -266,7 +266,7 @@
 
 ### 다중 소스 아키텍처 (소스 레지스트리)
 - **요구사항**: 여러 소스 수용, 도메인 유동(주소 변경), 단일 소스 고정 금지
-- **`sources.json`** (`apps/backend/`): 소스 정의를 코드 수정 없이 관리
+- **`sources.json`** (`backend/`): 소스 정의를 코드 수정 없이 관리
   - `domains`(URL 매칭), `base_url`(크롤링 주소), `collector`(수집기), `discover`(전략), `speed_hint_sec`(ETA)
   - 북토끼가 `bookto42.com`으로 옮기면 domains/base_url만 수정 — 코드 불변
 - **`lib/sources.py`**: pydantic(BaseModel) 검증 레지스트리
@@ -479,7 +479,7 @@
 ### Vercel 라우팅 수정
 - **`[...slug]/route.ts`**: `proxyToNeon()` 조건에 `slug[1] !== 'epub'` && `!== 'image-proxy'` 추가
   - EPUB/image-proxy/chapters 요청이 Neon proxy로 잘못 라우팅 → 501 버그 수정
-- **`apps/frontend/app/api/novels/[id]/chapters/route.ts`**: `limit` 기본값 20
+- **`frontend/app/api/novels/[id]/chapters/route.ts`**: `limit` 기본값 20
 
 ### DB 메타데이터 직접 표시
 - **`novel/[id]/page.tsx`**: `fetchMetadata()` 제거, `Novel` 인터페이스 필드 직접 표시
@@ -597,7 +597,7 @@
   - `MaruBuri-Regular.ttf` (한글 둥근고딕 - 인용)
   - `Literata-Variable.ttf` (영문 세리프)
 - **스타일**: `@font-face` + 챕터에서 `link rel="stylesheet" href="../styles/main.css"`
-- **위치**: `/opt/workspace/ebooklib/scripts/fonts/`
+- **위치**: `/opt/workspace/minihome/apps/ebook/scripts/fonts/`
 - **버그 수정**: `from ebooklib import epub` → `from ebooklib.epub import EpubBook, EpubHtml, ...` (ebooklib 0.20에서 epub 모듈 직접 import 안 됨)
 
 ### UI 정리
@@ -611,12 +611,12 @@
   - 제목 + 작가 + 장르 + 상태 + 회차 목록 + EPUB 다운로드
 
 ### 의존성 추가
-- `apps/backend/requirements.txt`에 추가:
+- `backend/requirements.txt`에 추가:
   - `psycopg2-binary>=2.9.0` (Neon 동기화)
   - `ebooklib>=0.20` (EPUB 생성)
   - `lxml>=6.0.0` (ebooklib 의존성)
   - `curl_cffi>=0.13.0` (FlareSolverr 대안 - 미사용)
-- `apps/frontend/package.json`에 추가:
+- `frontend/package.json`에 추가:
   - `@neondatabase/serverless>=1.1.0` (Vercel Edge + Neon)
 - venv 재생성: ebooklib 직접 설치 (system python 사용 안 함, 진짜 venv)
 
@@ -645,16 +645,16 @@ namu.wiki (namu.wiki)        → 표지 이미지 백업
 - **Layer 0**: `systemd Restart=always` - watchdog도 자동 재시작
 
 ## 핵심 파일 위치
-- **백엔드**: `/opt/workspace/ebooklib/apps/backend/`
-- **프론트엔드**: `/opt/workspace/ebooklib/apps/frontend/`
+- **백엔드**: `/opt/workspace/minihome/apps/ebook/backend/`
+- **프론트엔드**: `/opt/workspace/minihome/apps/ebook/frontend/`
 - **데이터**: `/opt/ai_data/flaresolverr/`
   - `novels/{소설ID}/{wr_id}.json` (챕터)
   - `rate_limiter.db` (북토끼 rate limit)
   - `ebook_watcher/` (큐 + 로그)
   - `covers/` (표지)
-- **폰트**: `/opt/workspace/ebooklib/scripts/fonts/`
-- **문서**: `/opt/workspace/ebooklib/docs/`
-- **유틸리티**: `/opt/workspace/ebooklib/scripts/`
+- **폰트**: `/opt/workspace/minihome/apps/ebook/scripts/fonts/`
+- **문서**: `/opt/workspace/minihome/apps/ebook/docs/`
+- **유틸리티**: `/opt/workspace/minihome/apps/ebook/scripts/`
 
 ## 운영 명령
 - **수동 큐 추가**: `python3 scripts/ebook_watcher/ebook_queue.py add <wr_id> "제목"`

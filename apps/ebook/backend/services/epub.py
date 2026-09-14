@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: experimental
-# Path: ebooklib/apps/backend/services/epub.py
+# Path: ebook/backend/services/epub.py
 """EPUB 생성 서비스.
 
 DB에 저장된 챕터 JSON 파일들을 모아서 EPUB 파일을 생성한다.
@@ -32,7 +32,7 @@ from ebooklib.epub import (
 from lib.paths import find_novel_dir
 
 
-FONTS_DIR = Path("/opt/workspace/ebooklib/scripts/fonts")
+FONTS_DIR = Path(__file__).resolve().parents[2] / 'scripts' / 'fonts'
 COVERS_DIR = Path("/opt/ai_data/flaresolverr/covers")
 EPUB_DIR = Path("/opt/ai_data/flaresolverr/epub")
 

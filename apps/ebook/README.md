@@ -31,20 +31,36 @@ python3 scripts/pipeline.py loop --source bookto31
 ## 구조
 
 ```
-/opt/workspace/ebooklib/
-├── apps/
-│   ├── frontend/          # Next.js 16 + React 19 (Vercel 배포)
-│   │   ├── app/           # App Router 페이지
-│   │   │   ├── page.tsx                   # 라이브러리 메인 (ISR)
-│   │   │   ├── admin/page.tsx             # 파이프라인 관리
-│   │   │   ├── novel/[id]/                # 소설 상세 + 회차
-│   │   │   │   └── chapter/[wr_id]/       # 회차 읽기
-│   │   │   └── api/[...slug]/route.ts     # catch-all 프록시 → devforge
-│   │   ├── lib/api.ts             # 타입 + fetch 래퍼
-│   │   ├── next.config.ts
-│   │   └── package.json
-│   │
-│   └── backend/           # FastAPI (devforge, OCI)
+/opt/workspace/minihome/apps/ebook/
+├── backend/           # FastAPI (devforge, OCI)
+│   ├── main.py        # 앱 엔트리포인트 + 라우터 등록
+│   ├── routers/           # novels, chapters, metadata
+│   │   ├── metadata.py   # /api/metadata/lookup, /api/metadata/search
+│   │   ├── novels.py     # /api/novels, /api/novels/{id}
+│   │   ├── chapters.py   # /api/novels/{id}/chapters, /api/chapters/{wr_id}
+│   │   └── pipeline.py   # 파이프라인 시작/상태 (Admin용)
+│   ├── services/          # data, epub, bookto31, metadata, metadata_namu
+│   │   ├── data.py       # JSON 파일 읽기 (인덱스 캐시)
+│   │   ├── epub.py       # EPUB 생성 (한글 4폰트)
+│   │   ├── bookto31.py   # 북토끼 크롤러 (FlareSolverrSession)
+│   │   ├── metadata.py   # 메타데이터 검색
+│   │   └── metadata_namu.py # namu.wiki 메타데이터
+│   └── lib/               # 공통 레이어
+│       ├── flaresolverr_client.py # FlareSolverr 세션 관리
+│       ├── storage.py             # 챕터 저장/메타 관리
+│       ├── toki31_playwright.py   # 뉴토끼 Playwright 추출기
+│       └── rate_limiter.py        # SQLite rate limiter
+│   └── requirements.txt
+├── frontend/          # Next.js 16 + React 19 (Vercel 배포)
+│   ├── app/           # App Router 페이지
+│   │   ├── page.tsx           # 메인 페이지 (소설 하이라이트 + 카테고리)
+│   │   ├── library/page.tsx   # 소설 목록 (ISR)
+│   │   ├── novel/[id]/        # 소설 상세 + 회차 목록
+│   │   │   └── chapter/[wr_id]/page.tsx  # 회차 읽기 (ISR)
+│   │   └── api/[...slug]/route.ts     # catch-all 프록시 → devforge
+│   ├── lib/api.ts             # 타입 + fetch 래퍼
+│   ├── next.config.ts
+│   └── package.json
 │       ├── main.py        # 앱 엔트리포인트 + 라우터 등록
 │       ├── routers/
 │       │   ├── metadata.py   # /api/metadata/lookup, /api/metadata/search
@@ -108,32 +124,32 @@ python3 scripts/pipeline.py loop --source bookto31
 
 ```bash
 # 터미널 1: 백엔드
-cd apps/backend
+cd backend
 venv/bin/python -m uvicorn main:app --reload --port 8089
 
 # 터미널 2: 프론트엔드
-cd apps/frontend
+cd frontend
 npm run dev  # http://localhost:3000
 ```
 
-**로컬에서만** `apps/frontend/.env.local`에 주석 해제:
+**로컬에서만** `frontend/.env.local`에 주석 해제:
 ```env
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8089
 ```
 
 ### 프로덕션 (Vercel + devforge)
 ```bash
-# 프론트엔드 배포 (Vercel, Root Directory=apps/frontend)
-cd /opt/workspace/ebooklib
+# 프론트엔드 배포 (Vercel, Root Directory=frontend)
+cd /opt/workspace/minihome/apps/ebook
 vercel deploy --prod --project miniebook
 
 # 백엔드는 devforge에서 실행 중 (port 8089) — 재시작 필요 시:
-#   cd apps/backend && setsid nohup venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port 8089 &
+#   cd backend && setsid nohup venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port 8089 &
 ```
 
 ### EPUB 변환 (독립 실행)
 ```bash
-cd /opt/workspace/ebooklib
+cd /opt/workspace/minihome/apps/ebook
 python scripts/json_to_epub.py --help
 python scripts/json_to_epub.py --start 1 --end 10 --output my_novel.epub
 python scripts/json_to_epub.py  # 전체 변환
@@ -155,7 +171,7 @@ python scripts/json_to_epub.py  # 전체 변환
 
 ## 환경 변수
 
-### 백엔드 (`apps/backend/.env`)
+### 백엔드 (`backend/.env`)
 ```env
 ENV=development
 DEBUG=true
@@ -163,7 +179,7 @@ CORS_ORIGINS=["https://miniebook.vercel.app"]  # Vercel에서 자동 처리됨
 # BRAVE_API_KEY=your_key  # 선택사항
 ```
 
-### 프론트엔드 (`apps/frontend/.env.local`)
+### 프론트엔드 (`frontend/.env.local`)
 ```env
 # 로컬 개발 시:
 # NEXT_PUBLIC_API_URL=http://127.0.0.1:8089
@@ -172,7 +188,7 @@ CORS_ORIGINS=["https://miniebook.vercel.app"]  # Vercel에서 자동 처리됨
 
 ## 배포 체크리스트
 
-- [ ] Vercel 프로젝트 생성 시 **Root Directory: `apps/frontend`**
+- [ ] Vercel 프로젝트 생성 시 **Root Directory: `frontend`**
 - [ ] Framework: `Next.js` (자동 감지)
 - [ ] Build Command: `npm run build`
 - [ ] Output Directory: `.next`

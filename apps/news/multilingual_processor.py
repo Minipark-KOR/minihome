@@ -156,7 +156,7 @@ class MultilingualProcessor:
         self.tavily_keys = _load_tavily_keys()
         self.tavily_rotator = KeyRotator(
             self.tavily_keys,
-            state_file="/opt/workspace/news/tavily_state.json"
+            state_file="/opt/workspace/minihome/apps/news/tavily_state.json"
         ) if self.tavily_keys else None
         self._stats = {"total": 0, "regex": 0, "tavily": 0, "wikidata": 0}
 

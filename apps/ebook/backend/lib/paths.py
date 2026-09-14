@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: new
-# Path: ebooklib/apps/backend/lib/paths.py
+# Path: ebook/backend/lib/paths.py
 """미디어 타입별 저장 경로 해석 — 단일 진실 원천.
 
 데이터 레이아웃:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: new
-# Path: ebooklib/apps/backend/lib/flaresolverr_client.py
+# Path: ebook/backend/lib/flaresolverr_client.py
 """FlareSolverr 클라이언트 — Cloudflare Turnstile 우회 공유 세션 관리.
 
 bookto31.py의 _session_*, _flaresolverr_*, _fetch_with_flaresolverr를 통합.

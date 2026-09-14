@@ -139,7 +139,7 @@ resp = session.get("https://toki31.com/novel/58455/5784624", timeout=15)
 ### 4.1 정책
 - **8분** + **±2분 jitter** 같은 URL 반복 방지
 - DB: `/opt/ai_data/flaresolverr/rate_limiter.db` (SQLite)
-- 모듈: `apps/backend/lib/rate_limiter.py`
+- 모듈: `backend/lib/rate_limiter.py`
 
 ### 4.2 구현
 ```python

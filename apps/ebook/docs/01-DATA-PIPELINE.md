@@ -49,7 +49,7 @@ python3 scripts/pipeline.py revalidate "오늘만 사는 기사"
 
 ### Step 0: 소스 레지스트리 (`sources.json`)
 
-`apps/backend/sources.json`에 소스를 등록 — 코드 수정 없이 추가/도메인 변경 가능:
+`backend/sources.json`에 소스를 등록 — 코드 수정 없이 추가/도메인 변경 가능:
 
 ```json
 {

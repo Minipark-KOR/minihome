@@ -123,7 +123,7 @@ COLLECTORS = {
 ## 모노레포 디렉토리 구조
 
 ```
-/opt/workspace/ebooklib/
+/opt/workspace/minihome/apps/ebook/
 ├── README.md                        # 사용자용 간략 가이드
 ├── docs/                            # ← 이 문서들이 있는 곳
 ├── apps/
@@ -173,7 +173,7 @@ COLLECTORS = {
 
 ```
 ┌────────────────────┐
-│ apps/frontend/     │
+│ frontend/     │
 │   app/novel/[id]/  │
 │     page.tsx (ISR) │
 └─────────┬──────────┘

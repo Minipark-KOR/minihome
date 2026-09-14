@@ -20,9 +20,9 @@ if _SCRIPTS not in sys.path:
 from lib.db import psql_json, psql_ok, esc_sql
 
 STATE_FILES = {
-    "exa": "/opt/workspace/news/exa_state.json",
-    "tavily": "/opt/workspace/news/tavily_state.json",
-    "brave": "/opt/workspace/news/brave_state.json",
+    "exa": "/opt/workspace/minihome/apps/news/exa_state.json",
+    "tavily": "/opt/workspace/minihome/apps/news/tavily_state.json",
+    "brave": "/opt/workspace/minihome/apps/news/brave_state.json",
 }
 
 

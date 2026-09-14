@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: new
-# Path: ebooklib/apps/backend/lib/traffic_guard.py
+# Path: ebook/backend/lib/traffic_guard.py
 """일일 트래픽 한도 가드 — 프록시 사용량 실측 누적 + 일일 한도 제어.
 
 DataImpulse/MaskProxy는 GB당 과금. 과소진 방지를 위해 실제 다운로드 바이트를

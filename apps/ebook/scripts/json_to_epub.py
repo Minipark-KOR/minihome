@@ -17,7 +17,7 @@ from ebooklib import epub
 SCRIPT_DIR = Path(__file__).parent
 NOVEL_DIR = Path("/opt/ai_data/flaresolverr/novels/하남자의_탑_공략법")
 COVER_IMAGE = Path("/tmp/cover.jpg")
-OUTPUT_DIR = Path("/opt/workspace/ebooklib/output")
+OUTPUT_DIR = Path("/opt/workspace/minihome/apps/ebook/output")
 FIRST_WR_ID = 21431
 TITLE = "하남자의 탑 공략법"
 AUTHOR = "미상"

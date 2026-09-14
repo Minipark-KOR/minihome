@@ -4,7 +4,7 @@ set -euo pipefail
 # DevForge 체인 파이프라인 - 뉴스 프로젝트 빌드/배포
 # usage: news-deploy.sh [build|test|prod]
 
-WEB="/opt/workspace/news/web"
+WEB="/opt/workspace/minihome/apps/news/web"
 cd "$WEB"
 
 ACTION=${1:-build}

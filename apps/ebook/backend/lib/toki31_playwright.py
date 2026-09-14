@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Status: new
-# Path: ebooklib/apps/backend/lib/toki31_playwright.py
+# Path: ebook/backend/lib/toki31_playwright.py
 """toki31 Playwright 콘텐츠 추출기.
 
 toki31의 anti-bot 보호를 우회하기 위해 Playwright 브라우저를 사용:
