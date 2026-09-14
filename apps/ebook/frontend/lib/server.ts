@@ -91,4 +91,5 @@ export interface NewsItem {
   source?: string;
   category?: string;
   summary_ko?: string;
+  summary?: string;
 }
