@@ -13,13 +13,11 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 
 # Add calendar_sync to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from calendar_sync.router import router as calendar_router
-from calendar_sync.oauth_service import GoogleOAuthService
 
 # Load secrets
 _SECRETS: dict[str, str] = {}

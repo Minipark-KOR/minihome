@@ -42,6 +42,9 @@ export default function NewsView({
             {a.title_ko && a.title !== a.title_ko ? (
               <div className="text-xs text-gray-500 mt-0.5">{a.title}</div>
             ) : null}
+            {a.summary_ko ? (
+              <p className={`${dim} mt-1 line-clamp-2`}>{a.summary_ko}</p>
+            ) : null}
             <div className={`${dim} mt-1 flex gap-2`}>
               {a.source ? <span>{a.source}</span> : null}
               {a.category ? <span className="text-gray-400">· {a.category}</span> : null}
